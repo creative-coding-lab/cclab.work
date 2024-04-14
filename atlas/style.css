@@ -129,7 +129,9 @@ p {
     position: static;
     transform: none;
     text-align: center;
-    margin: 3rem 0;
+
+    width: 90vw;
+    margin: 3rem auto;
   }
 
   .creature-container-rotator {

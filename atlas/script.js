@@ -103,17 +103,25 @@ function applyRandomHoverColor() {
 }
 
 function rotateByScrolling() {
-  // don't apply this on the mobile device.
-  if (window.innerWidth < RESPONSIVE_BREAKPOINT) return;
-
   const container = document.querySelector('.creature-container-rotator');
-  let angle = 0;
-  window.addEventListener('wheel', function (event) {
-    angle += floor(event.deltaY * 0.1);
-    container.style.transform = `rotate(${angle}deg)`;
-    event.preventDefault();
-  }, { passive: false });
+
+  if (window.innerWidth >= RESPONSIVE_BREAKPOINT) {
+    let angle = 0;
+    window.addEventListener('wheel', function (event) {
+      angle += floor(event.deltaY * 0.1);
+      container.style.transform = `rotate(${angle}deg)`;
+      event.preventDefault();
+    }, { passive: false });
+  } else {
+    // if window is smaller than "RESPONSIVE_BREAKPOINT", remove rotation.
+    container.style.transform = 'none';
+    // remove the event listener.
+    window.addEventListener('wheel', function () { });
+  }
 }
 
 // if window is resized, re-apply rotation.
-window.addEventListener('resize', applyRotation);
+window.addEventListener('resize', () => {
+  applyRotation();
+  rotateByScrolling();
+});
