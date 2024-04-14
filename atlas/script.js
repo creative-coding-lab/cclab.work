@@ -38,7 +38,7 @@ function setup() {
 
   // add additional effects :D
   applyRandomHoverColor();
-  // rotateByScrolling();
+  rotateByScrolling();
 }
 
 function draw() {
