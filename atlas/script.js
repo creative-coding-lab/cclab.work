@@ -1,6 +1,6 @@
 const RESPONSIVE_BREAKPOINT = 900;
 const ITEM_RADIAL_DISTANCE = 550;
-const container = document.querySelector('.creature-container');
+
 let tables = [];
 
 function preload() {
@@ -48,6 +48,7 @@ function draw() {
 function createItem(name, remark, link) {
   const div = document.createElement('div');
   div.classList.add('creature-item');
+  const container = document.querySelector('.creature-container');
   container.appendChild(div);
 
   const spacer = document.createElement('div');
@@ -104,9 +105,9 @@ function applyRandomHoverColor() {
 
 function rotateByScrolling() {
   if (window.innerWidth >= RESPONSIVE_BREAKPOINT) {
-    let angle = 0;
     window.addEventListener('wheel', handleWheelEvent, { passive: false });
   } else {
+    const container = document.querySelector('.creature-container-rotator');
     container.style.transform = 'none';
     window.removeEventListener('wheel', handleWheelEvent);
   }
