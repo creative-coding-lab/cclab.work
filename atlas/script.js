@@ -35,9 +35,9 @@ function setup() {
   // then, apply rotation to each item.
   applyRotation();
 
+  // add additional effects :D
   applyRandomHoverColor();
-
-  rotateItemByScrolling();
+  rotateByScrolling();
 }
 
 function draw() {
@@ -75,7 +75,6 @@ function applyRotation() {
 }
 
 function applyRandomHoverColor() {
-  //const items = document.querySelectorAll('.creature-item');
   // get h3 from each item, then apply random hover color to it.
   const items = document.querySelectorAll('.creature-item h3');
 
@@ -91,8 +90,7 @@ function applyRandomHoverColor() {
   });
 }
 
-
-function rotateItemByScrolling() {
+function rotateByScrolling() {
   const container = document.querySelector('.creature-container-rotator');
   let angle = 0;
   window.addEventListener('wheel', function (event) {
