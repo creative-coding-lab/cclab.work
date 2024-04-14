@@ -1,3 +1,4 @@
+const RESPONSIVE_BREAKPOINT = 900;
 const ITEM_RADIAL_DISTANCE = 550;
 const container = document.querySelector('.creature-container');
 let tables = [];
@@ -37,7 +38,7 @@ function setup() {
 
   // add additional effects :D
   applyRandomHoverColor();
-  rotateByScrolling();
+  // rotateByScrolling();
 }
 
 function draw() {
@@ -68,10 +69,21 @@ function createItem(name, remark, link) {
 
 function applyRotation() {
   const items = document.querySelectorAll('.creature-item');
-  items.forEach((item, i) => {
-    const angle = (360 / items.length) * i;
-    item.style.transform = `rotate(${angle}deg) translate(${ITEM_RADIAL_DISTANCE}px)`;
-  });
+  if (window.innerWidth >= RESPONSIVE_BREAKPOINT) {
+    document.body.style.overflow = 'hidden';
+    items.forEach((item, i) => {
+      const angle = (360 / items.length) * i;
+      item.style.transform = `rotate(${angle}deg) translate(${ITEM_RADIAL_DISTANCE}px)`;
+    });
+
+  } else {
+    // if window is smaller than "RESPONSIVE_BREAKPOINT", remove rotation.
+    document.body.style.overflow = 'auto';
+    const items = document.querySelectorAll('.creature-item');
+    items.forEach((item) => {
+      item.style.transform = 'none';
+    });
+  }
 }
 
 function applyRandomHoverColor() {
@@ -91,6 +103,9 @@ function applyRandomHoverColor() {
 }
 
 function rotateByScrolling() {
+  // don't apply this on the mobile device.
+  if (window.innerWidth < RESPONSIVE_BREAKPOINT) return;
+
   const container = document.querySelector('.creature-container-rotator');
   let angle = 0;
   window.addEventListener('wheel', function (event) {
@@ -98,5 +113,7 @@ function rotateByScrolling() {
     container.style.transform = `rotate(${angle}deg)`;
     event.preventDefault();
   }, { passive: false });
-
 }
+
+// if window is resized, re-apply rotation.
+window.addEventListener('resize', applyRotation);

@@ -12,8 +12,6 @@ body {
   font-family: "Lora", serif;
   font-weight: 400;
   color: var(--text-color);
-
-  overflow: hidden;
 }
 
 /* remove default margin */
@@ -122,5 +120,66 @@ p {
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+@media (max-width: 900px) {
+  .title-container {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin: 3rem 0;
+  }
+
+  .creature-container-rotator {
+    position: static;
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+  .creature-container {
+    position: static;
+    width: auto;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    animation: none;
+  }
+
+  .creature-item {
+    position: static;
+    margin: 0.8rem;
+    padding: 0.5rem;
+    color: black;
+
+    width: 80vw;
+    height: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  .creature-item h3 {
+    width: 100%;
+    padding: 0.2rem;
+    font-size: 1.2rem;
+  }
+
+  .creature-item p {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.2rem;
   }
 }
