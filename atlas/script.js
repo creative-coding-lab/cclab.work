@@ -103,8 +103,6 @@ function applyRandomHoverColor() {
 }
 
 function rotateByScrolling() {
-  const container = document.querySelector('.creature-container-rotator');
-
   if (window.innerWidth >= RESPONSIVE_BREAKPOINT) {
     let angle = 0;
     window.addEventListener('wheel', handleWheelEvent, { passive: false });
@@ -122,7 +120,6 @@ function handleWheelEvent(event) {
   event.preventDefault();
 }
 
-// if window is resized, re-apply rotation.
 window.addEventListener('resize', () => {
   applyRotation();
   rotateByScrolling();
