@@ -107,17 +107,19 @@ function rotateByScrolling() {
 
   if (window.innerWidth >= RESPONSIVE_BREAKPOINT) {
     let angle = 0;
-    window.addEventListener('wheel', function (event) {
-      angle += floor(event.deltaY * 0.1);
-      container.style.transform = `rotate(${angle}deg)`;
-      event.preventDefault();
-    }, { passive: false });
+    window.addEventListener('wheel', handleWheelEvent, { passive: false });
   } else {
-    // if window is smaller than "RESPONSIVE_BREAKPOINT", remove rotation.
     container.style.transform = 'none';
-    // remove the event listener.
-    window.addEventListener('wheel', function () { });
+    window.removeEventListener('wheel', handleWheelEvent);
   }
+}
+
+let angle = 0;
+function handleWheelEvent(event) {
+  angle += floor(event.deltaY * 0.1);
+  const container = document.querySelector('.creature-container-rotator');
+  container.style.transform = `rotate(${angle}deg)`;
+  event.preventDefault();
 }
 
 // if window is resized, re-apply rotation.
