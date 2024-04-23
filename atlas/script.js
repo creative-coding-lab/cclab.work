@@ -1,5 +1,6 @@
 const RESPONSIVE_BREAKPOINT = 900;
-const ITEM_RADIAL_DISTANCE = 550;
+const MIN_RADIAL_DISTANCE = 300;
+const MAX_RADIAL_DISTANCE = 550;
 
 let tables = [];
 
@@ -74,9 +75,17 @@ function applyRotation() {
     document.body.style.overflow = 'hidden';
     items.forEach((item, i) => {
       const angle = (360 / items.length) * i;
-      item.style.transform = `rotate(${angle}deg) translate(${ITEM_RADIAL_DISTANCE}px)`;
+      // map the radial distance based on the window width.
+      radialDistance = floor(map(window.innerWidth, RESPONSIVE_BREAKPOINT, RESPONSIVE_BREAKPOINT + 200, MIN_RADIAL_DISTANCE, MAX_RADIAL_DISTANCE, true));
+      item.style.transform = `rotate(${angle}deg) translate(${radialDistance}px)`;
     });
-
+    // get creature-container-rotator and title-container and change the left position
+    let xOriginPosition = floor(map(window.innerWidth, RESPONSIVE_BREAKPOINT, RESPONSIVE_BREAKPOINT + 200, 30, 22, true));
+    xOriginPosition.toFixed(2); // I am not sure this would be useful.
+    const container = document.querySelector('.creature-container-rotator');
+    const title = document.querySelector('.title-container');
+    title.style.left = `${xOriginPosition}vw`;
+    container.style.left = `${xOriginPosition}vw`;
   } else {
     // if window is smaller than "RESPONSIVE_BREAKPOINT", remove rotation.
     document.body.style.overflow = 'auto';
