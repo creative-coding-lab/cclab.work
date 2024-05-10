@@ -1,87 +1,195 @@
-const SHAPE_SIZE = 280;
+const RESPONSIVE_BREAKPOINT = 900;
+const MIN_RADIAL_DISTANCE = 300;
+const MAX_RADIAL_DISTANCE = 550;
 
-let txtColors = [
-  "#ff48c4",
-  "#2bd1fc",
-  "#f3ea5f",
-  "#c04df9",
-  "#ff3f3f",
-  "#ff8500",
-  "#39ff14",
-  "#dfff00",
-  "#8a00ff",
-];
+let sectionData = []
+let tables = [];
+let titleLetters = [];
+let projectListItems = [];
 
-function setup() {
-  document.getElementsByClassName("p5Canvas")[0].style.display = "none";
-  loadStrings(filename, generateProjectLinks);
+
+let shapes = [];
+function unHoverListItems(){
+  projectListItems.forEach(d=>{d.classList.remove("hovered")})
+}
+function showDescription(text){
+  document.getElementById("project-description-text").style.display = "block";
+  document.getElementById("project-description-text").innerText = text;
+
+}
+function hideDescription(){
+  // document.getElementById("project-description-text").style.display = "none";
+  // document.getElementById("project-description-text").innerText = "";
 }
 
-function generateProjectLinks(results) {
-  results = results.sort((a, b) => 0.5 - Math.random());
-  for (const r of results) {
-    const info = split(r, ",");
-    const name = info[0];
-    const title = info[1];
-    const url = info[2];
+function preload() {
+  tables.push(loadTable('SubmissionFormResponses.csv', 'csv', 'header'));
+}
 
-    const container = document.getElementById("project-box-container");
-    const div = document.createElement("div");
-    container.appendChild(div);
-    div.className = "project-box";
-    //div.style.width = SHAPE_SIZE * 1.15 + "px";
-    //div.style.height = SHAPE_SIZE * 1.15 + "px";
+function setup() {
+  let cnv = createCanvas(windowWidth, windowHeight);
+  cnv.parent("canvasContainer");
+  // console.log(tables)
+  sectionData = tables[0].rows.map(d=>d.obj).filter(d=>d["Your CCLab Section"]==instructor);
+  document.getElementById("instructor-name").innerText = instructor;
+  buildHeadlineElements();
+  
+  // console.log(sectionData);
+  for(project of sectionData){
+    console.log(project)
+    let li = document.createElement("li");
+    let p = document.createElement("p");
+    li.appendChild(p);
+    let studentElm = document.createElement("span");
+    studentElm.className = "student-name";
+    let name = project["Your Name (as you want it displayed on the website)"];
+    studentElm.innerText = name;
+    p.appendChild(studentElm);
+    
+    let projectElm = document.createElement("span");
+    projectElm.className = "project-name";
+    projectElm.innerText = project["Your Project Name (for our IMA Show display)"]
+    // projectElm.innerText = "☞ click to open this project in a new tab"
+    p.appendChild(projectElm);
 
-    /*
-    const graphics = new ShapeImage(SHAPE_SIZE).get();
-    const dataUrl = graphics.elt.toDataURL();
+    let projectText = project["Short Description (1-2 sentences, not more!)"];
+    let projectLink = project["A working LINK (to a version that's LIVE on GitHub)"]
+    li.addEventListener("mouseover", function(){
+      unHoverListItems();
+      li.classList.add("hovered");
+      showDescription(projectText);
+    })
+    li.addEventListener("mouseout", function(){
+      unHoverListItems();
+      hideDescription();
+    })
+    li.addEventListener("click", function(){
+      window.open(projectLink, '_blank').focus();
+    })
+    projectListItems.push(li);
+    document.getElementById("projects").appendChild(li);
 
-    div.style.background = "url(" + dataUrl + ")";
-    div.style.backgroundSize = SHAPE_SIZE + "px";
-    div.style.backgroundRepeat = "no-repeat";
-    div.style.backgroundPosition = "center";
-    div.style.backgroundColor = "white"
-    */
-    div.style.cursor = "pointer";
+  }
+  
+}
 
-    /*
-    div.addEventListener("mouseover", (event) => {
-      div.style.backgroundColor = `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`;
-      let index = floor(random(txtColors.length));
-      div.style.backgroundColor = txtColors[index];
-    });
-    div.addEventListener("mouseout", (event) => {
-      // div.style.backgroundColor = "white";
-    });
-    div.addEventListener("click", (event) => {
-      window.open(url, "Project");
-    });
-    */
 
-    const aTitle = document.createElement("a");
-    div.appendChild(aTitle);
-    aTitle.className = "project-title";
-    aTitle.innerHTML = title.toUpperCase();
-    // aTitle.style.color = `rgb(${random(0, 150)}, ${random(0, 150)}, ${random(0, 150)})`;
-    aTitle.href = url;
-    aTitle.target = "Project";
 
-    const aName = document.createElement("a");
-    div.appendChild(aName);
-    aName.className = "project-student-name";
-    aName.innerHTML = name.toUpperCase();
-    // aName.style.color = `rgb(${random(0, 150)}, ${random(0, 150)}, ${random(0, 150)})`;
-    aName.href = url;
-    aName.target = "Project";
-    aName.style.animationDuration = `${random(5,10)}s`;
+function buildHeadlineElements(){
+  let title = document.getElementById("title");
+  let words = title.innerText.split(" ")
+  console.log(words)
+  title.innerHTML = "";
+
+  for(word of words){
+    console.log(word);
+    let s1 = document.createElement("span");
+    s1.className = "title-word "+word;
+    let letters = word.split("");
+    console.log(letters);
+    for(letter of letters){
+      let s2 = document.createElement("span");
+      s2.className = "title-letter";
+      s2.innerText = letter;
+      let rot = random(-18, 18)
+      s2.style.transform = "rotate(" + rot + "deg)"
+      s2.style.top = random(-6, 6)+"px";
+      s2.style.left = random(-3, 3)+"px";
+      titleLetters.push({elm: s2, rot: rot});
+      s1.appendChild(s2)
+    }
+    console.log(title)
+    title.appendChild(s1)
+    
+  } 
+}
+function animateTitle(){
+  for(letter of titleLetters){
+    if(random()<0.0006){
+      console.log(titleLetters[0]);
+      letter.rot += 360;
+      if(random()<0.5){
+        letter.elm.style.transform = "rotate(" + letter.rot + "deg)"
+      }else{
+        letter.elm.style.top = random(-8, 8)+"px";
+      }
+    }
   }
 }
 
+
 function draw() {
-  noLoop();
+  if(random()<0.0005){
+    addShape();
+  }
+  // noLoop();
+  background(255)
+  // fill(120, 200, 10);
+  // fill(0)
+  // rect(300, 0, width, height);
+  // console.log(shapes)
+  for(shape of shapes){
+    shape.update();
+    shape.display();
+  }
+
+  for(let i = shapes.length-1; i >=0; i--){
+    if(shapes[i].byebye == true){
+      shapes.splice(i, 1)
+    }
+  }
+  console.log(shapes.length)
+  
+  animateTitle();
 }
 
-/* global
-filename ShapeImage
-p5, ml5, ADD, ALT, ARROW, AUDIO, AUTO, AXES, BACKSPACE, BASELINE, BEVEL, BEZIER, BLEND, BLUR, BOLD, BOLDITALIC, BOTTOM, BURN, CENTER, CHORD, CLAMP, CLOSE, CONTROL, CORNER, CORNERS, CROSS, CURVE, DARKEST, DEGREES, DEG_TO_RAD, DELETE, DIFFERENCE, DILATE, DODGE, DOWN_ARROW, ENTER, ERODE, ESCAPE, EXCLUSION, FALLBACK, FILL, GRAY, GRID, HALF_PI, HAND, HARD_LIGHT, HSB, HSL, IMAGE, IMMEDIATE, INVERT, ITALIC, LABEL, LANDSCAPE, LEFT, LEFT_ARROW, LIGHTEST, LINEAR, LINES, LINE_LOOP, LINE_STRIP, MIRROR, MITER, MOVE, MULTIPLY, NEAREST, NORMAL, OPAQUE, OPEN, OPTION, OVERLAY, P2D, PI, PIE, POINTS, PORTRAIT, POSTERIZE, PROJECT, QUADRATIC, QUADS, QUAD_STRIP, QUARTER_PI, RADIANS, RADIUS, RAD_TO_DEG, REMOVE, REPEAT, REPLACE, RETURN, RGB, RIGHT, RIGHT_ARROW, ROUND, SCREEN, SHIFT, SOFT_LIGHT, SQUARE, STROKE, SUBTRACT, TAB, TAU, TESS, TEXT, TEXTURE, THRESHOLD, TOP, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, TWO_PI, UP_ARROW, VIDEO, WAIT, WEBGL, accelerationX, accelerationY, accelerationZ, deltaTime, deviceOrientation, displayHeight, displayWidth, focused, frameCount, height, isKeyPressed, key, keyCode, keyIsPressed, mouseButton, mouseIsPressed, mouseX, mouseY, movedX, movedY, pAccelerationX, pAccelerationY, pAccelerationZ, pRotateDirectionX, pRotateDirectionY, pRotateDirectionZ, pRotationX, pRotationY, pRotationZ, pixels, pmouseX, pmouseY, pwinMouseX, pwinMouseY, rotationX, rotationY, rotationZ, touches, turnAxis, width, winMouseX, winMouseY, windowHeight, windowWidth, abs, acos, alpha, ambientLight, ambientMaterial, angleMode, append, applyMatrix, arc, arrayCopy, asin, atan, atan2, background, beginContour, beginShape, bezier, bezierDetail, bezierPoint, bezierTangent, bezierVertex, blend, blendMode, blue, boolean, box, brightness, byte, camera, ceil, char, circle, clear, clearStorage, color, colorMode, concat, cone, constrain, copy, cos, createA, createAudio, createButton, createCamera, createCanvas, createCapture, createCheckbox, createColorPicker, createDiv, createElement, createFileInput, createGraphics, createImage, createImg, createInput, createNumberDict, createP, createRadio, createSelect, createShader, createSlider, createSpan, createStringDict, createVector, createVideo, createWriter, cursor, curve, curveDetail, curvePoint, curveTangent, curveTightness, curveVertex, cylinder, day, debugMode, degrees, describe, describeElement, directionalLight, displayDensity, dist, downloadFile, ellipse, ellipseMode, ellipsoid, emissiveMaterial, endContour, endShape, erase, exitPointerLock, exp, fill, filter, float, floor, fract, frameRate, frustum, fullscreen, get, getFrameRate, getItem, getURL, getURLParams, getURLPath, green, gridOutput, hex, hour, httpDo, httpGet, httpPost, hue, image, imageMode, int, isLooping, join, keyIsDown, lerp, lerpColor, lightFalloff, lightness, lights, line, loadBytes, loadFont, loadImage, loadJSON, loadModel, loadPixels, loadShader, loadStrings, loadTable, loadXML, log, loop, mag, map, match, matchAll, max, millis, min, minute, model, month, nf, nfc, nfp, nfs, noCanvas, noCursor, noDebugMode, noErase, noFill, noLights, noLoop, noSmooth, noStroke, noTint, noise, noiseDetail, noiseSeed, norm, normal, normalMaterial, orbitControl, ortho, perspective, pixelDensity, plane, point, pointLight, pop, popMatrix, popStyle, pow, print, push, pushMatrix, pushStyle, quad, quadraticVertex, radians, random, randomGaussian, randomSeed, rect, rectMode, red, redraw, registerPromisePreload, removeElements, removeItem, requestPointerLock, resetMatrix, resetShader, resizeCanvas, reverse, rotate, rotateX, rotateY, rotateZ, round, saturation, save, saveCanvas, saveFrames, saveGif, saveJSON, saveJSONArray, saveJSONObject, saveStrings, saveTable, scale, second, select, selectAll, set, setAttributes, setCamera, setFrameRate, setMoveThreshold, setShakeThreshold, shader, shearX, shearY, shininess, shorten, shuffle, sin, smooth, sort, specularColor, specularMaterial, sphere, splice, split, splitTokens, spotLight, sq, sqrt, square, storeItem, str, stroke, strokeCap, strokeJoin, strokeWeight, subset, tan, text, textAlign, textAscent, textDescent, textFont, textLeading, textOutput, textSize, textStyle, textWidth, texture, textureMode, textureWrap, tint, torus, translate, triangle, trim, unchar, unhex, updatePixels, vertex, writeFile, year
-*/
+function addShape(){
+  shapes.push( new BigShape())
+}
+// function mousePressed(){
+//   addShape();
+// }
+class BigShape{
+  constructor(){
+    this.size = random(width/4, 5*width);
+    this.dir = random([-1, 1]);
+    
+    this.x = -this.size/2;
+    if(this.dir < 0){
+      this.x = width + this.size/2
+    }
+    this.y = height/2;
+    // this.shape = shape;
+    this.speedX = random(0.1, 0.5)*this.dir;
+    // this.size = size;
+    this.hue = random(360);
+    if(random()<0.03){
+      this.white = true;
+    }else{
+      this.white = false;
+    }
+    rectMode(CENTER);
+    colorMode(HSB);
+    this.byebye = false;
+  }
+  update(){
+    this.x+=this.speedX
+    if(this.x > width+this.size/2){
+      this.byebye = true;
+    }
+  }
+  display(){
+    push();
+    translate(this.x, this.y);
+    noStroke();
+
+    fill(this.hue, 90, 205, 0.8);
+    if(this.white){
+      fill(255);
+    }
+    rect(0, 0, this.size, height);
+
+
+    pop();
+  }
+}

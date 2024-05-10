@@ -1,36 +1,65 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Creative Coding Lab | Fall 2023</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js" type="text/javascript"></script>
-    <script src="ShapeImage.js" type="text/javascript"></script>
-  </head>
+<html lang="en">
 
-  <body>
-    
-    <div class="title-container">
-      <h1><a href="index.html">CREATIVE CODING LAB</a></h1>
-      <hr>
-      <h3>SECTION: MOON</h3>
-      <div class="prev-next-button-container">
-        <a href="http://www.cclab.work/section-leon.html"> PREVIOUS </a>
-        &nbsp;&nbsp;|&nbsp;&nbsp; 
-        <a href="http://www.cclab.work/section-marcela.html"> NEXT </a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Biodiversity Atlas | CCLaboratories</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.min.js"></script>
+  
+  <script defer>let instructor="Moon";</script>
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <div id="canvasContainer"></div>
+  <div class="main-wrapper">
+    <div class="content-wrapper">
+      <div class="list-wrapper">
+        <ul id="projects" class="project-list">
+          <!-- <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm</span></p></li>
+          <li class="hovered"><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm</span></p></li>
+          <li><p><span class="student-name">Leon Eckert</span><span class="project-name">Genetic Dance Algorithm Genetic Dance Algorithm</span></p></li> -->
+        </ul>
+      </div>
+      <div class="info-wrapper">
+        <div class="header-info">
+          <h1 id="title">Creative Coding Lab</h1>
+          <h2><span id="instructor-name"></span>'s Section</h2>
+        </div>
+        <div class="project-description">
+          <p class="hovered" id="project-description-text"></p>
+        </div>
       </div>
     </div>
-    
-    <div id="project-box-container">
-      <!-- project-box -->
-    </div>
-    
-    <script> const filename = "projects-sec-moon.txt"; </script>
-    <script src="script.js" type="text/javascript"></script>
-    
-  </body>
+  </div>
+
+  <div class="prev-next-button-container">
+    <a href="section-marcele.html"> PREVIOUS SECTION </a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; 
+    <a href="section-eric.html"> NEXT SECTION </a>
+  </div>
+  
+</body>
+
 </html>
