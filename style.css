@@ -25,14 +25,14 @@ body{
 .list-wrapper{
   display: flex;
   flex: 0.5;
-  overflow: scroll;
+  overflow: auto;
   flex-direction: column;
   justify-content: center;
 }
 .project-list{
   /* outline: 1px solid red; */
   max-height: 100%;
-  overflow: scroll;
+  overflow: auto;
 
   list-style: none;
   padding: 20px;
