@@ -1,35 +1,37 @@
-body{
-  margin:0;
+body {
+  margin: 0;
   font-family: sans-serif;
 }
 
-.main-wrapper{
+.main-wrapper {
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
 }
 
-.content-wrapper{
+.content-wrapper {
   /* outline: black 1px solid; */
   width: 100%;
   max-width: 1500px;
   display: flex;
   height: 90vh;
- 
+
 }
-.list-wrapper{
+
+.list-wrapper {
   display: flex;
   flex: 0.5;
   overflow: auto;
   flex-direction: column;
   justify-content: center;
 }
-.project-list{
+
+.project-list {
   /* outline: 1px solid red; */
   max-height: 100%;
   overflow: auto;
@@ -38,7 +40,8 @@ body{
   padding: 20px;
   font-size: 1.25em;
 }
-.project-list li{
+
+.project-list li {
   /* margin: 30px 0px; */
   /* background-color: red; */
   padding: 2px 0px;
@@ -46,36 +49,39 @@ body{
   padding-left: 10px;
   mix-blend-mode: difference;
   color: white;
-  
+
 }
 
 
-.hovered{
-  
+.hovered {
+
   mix-blend-mode: difference;
   /* background-color: rgb(255, 242, 0); */
   background-color: white;
   color: black;
-  
+
 }
-.hovered p{
+
+.hovered p {
   /* background-color: rgb(255, 242, 0); */
-  
+
   /* background-blend-mode: difference; */
   color: black;
-  
+
 }
+
 .hovered p:before {
   content: "☞ ";
 }
 
 
-.project-list .student-name{
+.project-list .student-name {
   margin-right: 10px;
   font-weight: bold;
-  
+
 }
-.info-wrapper{
+
+.info-wrapper {
   flex: 0.5;
   /* outline: 1px dashed green; */
   display: flex;
@@ -83,64 +89,72 @@ body{
 
 }
 
-.header-info{
+.header-info {
   /* outline: 1px black dashed; */
   text-align: right;
   padding: 5px 30px;
 }
-h1{
+
+h1 {
   font-size: 3.7em;
   /* display: flex; */
   color: white;
   mix-blend-mode: difference;
-  
 }
-h2{
+
+h2 {
   color: white;
   mix-blend-mode: difference;
 }
-.title-word{
+
+.title-word {
   margin: 0px 8px;
   position: relative;
   display: inline-block;
-  
+
 }
-.Creative{
-  top:-13px;
+
+.Creative {
+  top: -13px;
   transform: rotate(-5deg);
 }
-.Coding{
+
+.Coding {
   transform: rotate(3deg);
 }
-.Lab{
+
+.Lab {
   position: relative;
-  top:25px;
+  top: 25px;
   transform: rotate(-3deg);
   font-size: 0.8em;
 }
-.title-letter{
+
+.title-letter {
   display: inline-block;
   position: relative;
-  transition: all 0.5s; 
+  transition: all 0.5s;
 }
+
 /* h1 span{
   position: relative;
   transform: rotate(45deg);
   display: inline-block;
   mix-blend-mode: difference;
 } */
-.project-description{
+.project-description {
   /* outline: 1px black dashed; */
   flex-grow: 3;
-  padding:10px;
+  padding: 10px;
   /* padding-top: 200px; */
   /* background-color: aqua; */
   display: flex;
-  
 
-  
+
+
 }
-.project-description p{
+
+.project-description p {
   max-width: 500px;
   margin: auto;
   font-size: 1.6em;
@@ -152,33 +166,68 @@ h2{
 }
 
 @media (max-width: 800px) {
+
   /* CSS rules */
-  .project-description{
+  .project-description {
     display: none;
   }
-  .info-wrapper{
+
+  .info-wrapper {
     flex: none;
     order: 1;
   }
-  .list-wrapper{
+
+  .list-wrapper {
     flex: none;
     order: 2;
     display: block;
   }
-  .content-wrapper{
+
+  .content-wrapper {
     flex-direction: column;
     height: auto;
   }
-  .main-wrapper{
+
+  .main-wrapper {
     display: block;
   }
-  
+
 
 }
 
 
-.prev-next-button-container{
+.prev-next-button-container {
   position: fixed;
   bottom: 30px;
   right: 30px
+}
+
+.main-header-info {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+
+  margin: 8rem 12rem;
+  transform: origin(0, 0);
+  transform: rotate(-5deg);
+}
+
+.main-header-info h1 {
+  color: black;
+}
+
+.main-header-info h2 {
+  color: black;
+  transform: origin(0, 0);
+  transform: rotate(10deg);
+
+  margin-left: 5rem;
+  margin-top: -0.5rem;
+  margin-bottom: 3rem;
+}
+
+.main-header-info a {
+  font-size: 2rem;
+  margin: 0.5rem;
 }
