@@ -8,7 +8,7 @@ function preload() {
   tables.push(loadTable('section-leon.csv', 'csv'));
   tables.push(loadTable('section-marcele.csv', 'csv'));
   tables.push(loadTable('section-moon.csv', 'csv'));
-  tables.push(loadTable('section-eric.csv', 'csv'));
+  tables.push(loadTable('section-viola.csv', 'csv'));
 }
 
 function setup() {
