@@ -3,6 +3,11 @@
 #### SP25 | IMA | NYU Shanghai
 ---
 
+### Examples on web editor
+
+- [Course Examples](examples/course-examples.md)
+- [Particles | Step-by-Step Guide](examples/particles-step-by-step.md)
+
 ### interaction
 
 - [Mouse Moved Fast](examples/12-interaction/interaction-01-mouse-move-fast/README.md)
