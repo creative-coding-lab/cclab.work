@@ -1,4 +1,4 @@
-// Demo Interaction: World Navigation using Main Character
+// Demo Interaction: World Navigation using Main Character (WASD / Arrow Keys)
 
 let worldWidth = 2000;
 let worldHeight = 2000;
@@ -24,7 +24,7 @@ function draw() {
   background(220);
 
   // move main character
-  character.followMouse();
+  character.moveByKey();
 
   // we only calculate the position of the main character and
   // don't display the main character here.
@@ -34,11 +34,6 @@ function draw() {
   worldOffsetX = width / 2 - character.x;
   worldOffsetY = height / 2 - character.y;
 
-  // prevent the world from moving out of the canvas
-  // Tip: uncomment the following lines two lines and see what happens! :D
-  //worldOffsetX = constrain(worldOffsetX, width - worldWidth, 0);
-  //worldOffsetY = constrain(worldOffsetY, height - worldHeight, 0);
-
   push(); // world's push()
   translate(worldOffsetX, worldOffsetY);
 
@@ -47,10 +42,9 @@ function draw() {
   fill(200, 255, 255);
   rect(0, 0, worldWidth, worldHeight);
 
+  // draw the particles in the environment
   for (let i = 0; i < particles.length; i++) {
     let p = particles[i];
-    p.move();
-    p.reappear();
     p.display();
   }
 
@@ -60,26 +54,14 @@ function draw() {
   pop(); // world's pop()
 
   text("The world follows the main character.", 10, 20);
-  text("But the main character will follow the mouse!", 10, 40);
+  text("But the main character will move by the WASD (or Arrow) keys", 10, 40);
 }
 
 class Particle {
   constructor(x, y, rad) {
     this.x = x;
     this.y = y;
-    this.xSpeed = random(-1, 1);
-    this.ySpeed = random(-1, 1);
     this.rad = rad;
-  }
-  move() {
-    this.x += this.xSpeed;
-    this.y += this.ySpeed;
-  }
-  reappear() {
-    if (this.x < 0) this.x = worldWidth;
-    if (this.x > worldWidth) this.x = 0;
-    if (this.y < 0) this.y = worldHeight;
-    if (this.y > worldHeight) this.y = 0;
   }
   display() {
     push();
@@ -95,29 +77,37 @@ class MainCharacter {
   constructor(x, y, rad) {
     this.x = x;
     this.y = y;
-    this.rotationAngle = 0;
     this.rad = rad;
+    this.rotationAngle = 0;
+    this.speed = 3; // character move speed
   }
-  followMouse() {
-    // get where the mouse points in the world coordinates
-    let targetX = mouseX - width / 2 + this.x;
-    let targetY = mouseY - height / 2 + this.y;
+  moveByKey() {
+    if (keyIsPressed) {
+      // it won't detect capital letters.
+      if (key == "w" || keyCode === UP_ARROW) { // up arrow or 'w'
+        this.y -= this.speed;
+        this.rotationAngle = radians(270);
+      }
+      if (key == "a" || keyCode === LEFT_ARROW) { // left arrow or 'a'
+        this.x -= this.speed;
+        this.rotationAngle = radians(180);
+      }
+      if (key == "s" || keyCode === DOWN_ARROW) { // down arrow or 's'
+        this.y += this.speed;
+        this.rotationAngle = radians(90);
+      }
 
-    // lerp to the target position
-    let lerpPercentage = 0.02; // this will determine how fast the main character moves
-    this.x = lerp(this.x, targetX, lerpPercentage);
-    this.y = lerp(this.y, targetY, lerpPercentage);
+      if (key == "d" || keyCode === RIGHT_ARROW) { // right arrow or 'd'
+        this.x += this.speed;
+        this.rotationAngle = radians(0);
+      }
+    }
 
     // prevent going outside
     this.x = constrain(this.x, 0, worldWidth);
     this.y = constrain(this.y, 0, worldHeight);
   }
   display() {
-    // calculate the direction toward mouse
-    let directionX = mouseX - width / 2;
-    let directionY = mouseY - height / 2;
-    this.rotationAngle = atan2(directionY, directionX);
-
     push();
     translate(this.x, this.y);
     rotate(this.rotationAngle); // rotate the main character to face the mouse
