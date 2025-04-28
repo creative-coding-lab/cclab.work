@@ -110,7 +110,7 @@ class MainCharacter {
   display() {
     push();
     translate(this.x, this.y);
-    rotate(this.rotationAngle); // rotate the main character to face the mouse
+    rotate(this.rotationAngle);
     noStroke();
     fill(255, 0, 255);
     triangle(
