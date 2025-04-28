@@ -1,4 +1,4 @@
-<h2><a href="/">Creative Coding Lab</a></h2>
+<h2><a href="/docs/">Creative Coding Lab</a></h2>
 
 #### SP25 | IMA | NYU Shanghai
 ---
