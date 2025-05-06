@@ -1,5 +1,6 @@
 /__test__
 /archive
 /other
+*/other
 .vscode/
 .DS_Store
