@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+  /* --primary-color: #1a37d8; */
+  --primary-color: #000;
+  --secondary-color: SpringGreen;
+  --text-color: #000000;
+  --link-color: #333344;
+  --link-hover-color: royalblue;
+  --header-font: "Urbanist", sans-serif;
+  --main-font: "Urbanist", sans-serif;
+}
+
+html,
+body {
+  min-height: 100vh;
+  font-family: var(--main-font);
+  font-weight: 400;
+  background: #EEEEF0;
+  color: var(--text-color);
+}
+
+.clipped-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  /* background: white; */
+  clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
+  -webkit-clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.diagonal-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.diagonal-line svg {
+  width: 100%;
+  height: 100%;
+}
+
+.random-text {
+  color: #333;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--primary-color);
+  font-weight: 400;
+  font-family: var(--header-font);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* a:hover {
+  color: var(--link-hover-color);
+  text-decoration: none;
+} */
+
+a:hover {
+  background: linear-gradient(-65deg,
+      #e9ff39,
+      #8cff1f,
+      #00c6cc,
+      #f08ed3,
+      #ed3737);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 400% 400%;
+  animation: gradientAnimation 3s infinite;
+}
+
+
+
+canvas {
+  display: block;
+}
+
+/* PROJECT PAGE */
+
+.title-container {
+  /* background-color: white; */
+  /* position: absolute; */
+  /* top: 5rem;
+  right: 5rem; */
+  /* width: 40rem; */
+  /* text-align: right; */
+}
+
+.title-container h1 {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.title-container h2 {
+  font-size: 2rem;
+}
+
+.title-container h3 {
+  font-size: 2rem;
+}
+
+.title-container hr {
+  border: 0.5px solid var(--secondary-color);
+  margin: 2.5rem 0;
+}
+
+.project-page-wrapper {
+  /* background-color: white; */
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  padding: 50px;
+  width: 700px;
+}
+
+.prev-next-button-container {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.prev-next-button-container h2 {
+  font-size: 2rem;
+  margin: 0 1rem 1rem 3rem;
+}
+
+.prev-next-button-container a {
+  font-size: 1rem;
+  margin-right: 1.2rem;
+}
+
+#project-box-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.project-box {
+  width: 100%;
+  padding: 1rem 0;
+  border: 1px solid rgba(255, 255, 255, 0);
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  transition: border-left 0.3s ease, padding-left 0.3s ease;
+}
+
+.project-box:hover {
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-left: 8px solid var(--secondary-color);
+  padding-left: 2rem;
+}
+
+.project-title {
+  font-size: 2rem;
+  font-family: var(--header-font);
+  margin-right: 1rem;
+  margin-top: 0.3rem;
+  font-weight: 200;
+}
+
+.project-student-name {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+#preview-container {
+  z-index: 100;
+  position: fixed;
+  right: 5vh;
+  top: 5vh;
+  width: 40vw;
+  transform-origin: 0 0;
+  /* transform: rotate(-5deg); */
+  padding: 3rem;
+  /* border: 3px solid var(--primary-color); */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  text-align: right;
+}
+
+#preview-container.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#preview-title {
+  font-size: 5em;
+  color: var(--primary-color);
+  font-family: var(--header-font);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+#preview-student-name {
+  font-size: 4rem;
+  color: var(--secondary-color);
+  margin-bottom: 2rem;
+}
+
+#preview-description {
+  font-weight: 200;
+  font-size: 3em;
+  line-height: 4rem;
+  margin-bottom: 3rem;
+}
+
+/* INDEX PAGE */
+
+.main-title-container {
+  position: absolute;
+  max-width: 1200px;
+  left: 5rem;
+  bottom: 5rem;
+  text-align: left;
+}
+
+.main-title {
+  font-size: 18rem;
+  font-weight: 200;
+  line-height: 0.85;
+}
+
+.main-semester {
+  color: #333333;
+  font-size: 4.5rem;
+}
+
+.main-section-container {
+  position: fixed;
+  right: 10rem;
+  top: 8rem;
+  text-align: left;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.section-text {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-right: 1rem;
+}
+
+.section-link-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: left;
+}
+
+.section-link {
+  margin: 1rem;
+
+  font-weight: 500;
+  font-size: 40px;
+}
+
+/* .section-link:hover {
+  background: linear-gradient(-65deg,
+      #e9ff39,
+      #8cff1f,
+      #00c6cc,
+      #f08ed3,
+      #ed3737);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 400% 400%;
+  animation: gradientAnimation 3s infinite;
+} */
+
+.prev-semester-container {
+  position: fixed;
+  right: 25px;
+  top: 20px;
+  font-size: 12px;
+  display: flex;
+}
+
+.prev-semester-container a,
+.prev-semester-container p {
+  margin: 0px 5px;
+}
+
+.footer {
+  width: 20rem;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  margin: 4rem;
+  text-align: right;
+}
+
+.footer p {
+  font-size: 0.95rem;
+}
+
+@media screen and (max-width: 900px) {
+
+  /* Project Pages */
+  .title-container {
+    width: calc(100% - 120px);
+    min-width: none;
+    max-width: none;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  #project-box-container {
+    position: static;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .project-box {
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Index Pages */
+  .main-title-container,
+  .main-section-container,
+  .footer {
+    position: static;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .prev-semester-container {
+    display: none;
+  }
+
+  .main-title {
+    padding: 30px;
+    font-size: 70px;
+    text-align: center;
+  }
+
+  .main-semester {
+    display: block;
+    padding: 30px;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .section-link {
+    text-align: center;
+  }
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
