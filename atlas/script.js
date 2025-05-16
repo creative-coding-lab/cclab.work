@@ -5,9 +5,10 @@ const MAX_RADIAL_DISTANCE = 550;
 let tables = [];
 
 function preload() {
-  tables.push(loadTable('section-marcele.csv', 'csv'));
-  tables.push(loadTable('section-leon.csv', 'csv'));
-  tables.push(loadTable('section-moon.csv', 'csv'));
+  tables.push(loadTable('section-all.csv', 'csv'));
+  //tables.push(loadTable('section-marcele.csv', 'csv'));
+  //tables.push(loadTable('section-leon.csv', 'csv'));
+  //tables.push(loadTable('section-moon.csv', 'csv'));
   // tables.push(loadTable('section-viola.csv', 'csv'));
 }
 
