@@ -15,7 +15,7 @@ h2 {
 }
 
 a {
-  display: block;
+  /* display: block; */
   margin-bottom: 1rem;
   font-size: 1.2rem;
   text-decoration: none;
