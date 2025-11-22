@@ -1,14 +1,14 @@
-# Creative Coding Lab | Spring 2025
+# Creative Coding Lab | Fall 2025
 
 Interactive Media Arts (IMA) at NYU Shanghai
 
 ## Class Materials
 
-- [Syllabus](https://docs.google.com/document/d/1nNYo3S8pPBxJVI-GqaR4JKiQAHaf1U4uBiJ3OHROlcE/edit?usp=sharing)
+- [Syllabus](https://docs.google.com/document/d/186uMLNul2FGIRymIl9lX94ngsDmXQmnZYJe2a_JcIbw/edit?usp=sharing)
 
 ## Course Information
 
-Instructor: Marcela Godoy, Leon Eckert and J.H. Moon
+Instructor: Marcela Godoy, Gottfried Haider, Viola He &amp; Xingchen Ian Zhang
 
 Creative Coding Lab explores the fundamentals of computer programming and web development through a series of creative projects. The course aims to equip students with the skills to develop web-based applications that use the JavaScript language and the p5.js environment and include a significant computational component. Fundamental concepts, such as variables, functions, control flow, arrays, loops and object-oriented programming, are applied to create generative visuals, interactive experiences, and internet art projects. This course is intended for students with no prior programming experience.
 

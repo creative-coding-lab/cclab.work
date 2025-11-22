@@ -6,6 +6,9 @@
 - [12-interaction/interaction-04-mouse-swiped](examples/12-interaction/interaction-04-mouse-swiped/README.md)
 - [12-interaction/interaction-05-drag-drop](examples/12-interaction/interaction-05-drag-drop/README.md)
 - [12-interaction/interaction-06-world-navigation](examples/12-interaction/interaction-06-world-navigation/README.md)
+- [12-interaction/interaction-07-parallax](examples/12-interaction/interaction-07-parallax/README.md)
+- [12-interaction/interaction-08-infinite-dragging](examples/12-interaction/interaction-08-infinite-dragging/README.md)
+- [12-interaction/interaction-09-scroll-animation](examples/12-interaction/interaction-09-scroll-animation/README.md)
 
 ### 13-interaction-ml5
 

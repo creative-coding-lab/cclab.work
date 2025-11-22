@@ -16,7 +16,9 @@
 - [Mouse Swiped Left or Right](examples/12-interaction/interaction-04-mouse-swiped/README.md)
 - [Drag and Drop](examples/12-interaction/interaction-05-drag-drop/README.md)
 - [World Navigation with WASD](examples/12-interaction/interaction-06-world-navigation/README.md)
-
+- [Parallax](examples/12-interaction/interaction-07-parallax/README.md)
+- [Infinite Dragging](examples/12-interaction/interaction-08-infinite-dragging/README.md)
+- [Scroll Animation](examples/12-interaction/interaction-09-scroll-animation/README.md)
 
 ### interaction + ml5
 
