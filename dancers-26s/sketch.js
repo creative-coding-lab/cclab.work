@@ -153,10 +153,10 @@ function drawSmoke() {
 function drawDiscoBall() {
   push();
   fill(255, 150);
-  text("[ a ]: add a random dancer at mouseX, Y", width * 0.05, height * 0.06);
-  text("[ d ]: delete the oldest dancer", width * 0.05, height * 0.09);
-  text("[ s ]: switches on smoke", width * 0.05, height * 0.12);
-  text("[ l ]: switches on strobe light", width * 0.05, height * 0.15);
+  text("[ a ]: add a random dancer at mouseX, Y", width * 0.05, height * 0.12);
+  text("[ d ]: delete the oldest dancer", width * 0.05, height * 0.15);
+  text("[ s ]: switches on smoke", width * 0.05, height * 0.18);
+  text("[ l ]: switches on strobe light", width * 0.05, height * 0.21);
   imageMode(CENTER);
   translate(width / 2, 70);
   scale(0.5);
