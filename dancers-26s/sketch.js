@@ -10,7 +10,7 @@ console.log("[l]: switches on strobe light")
 //  sketch.)
 
 // Add the name of all dancer classes in here:
-let dancerClasses = [LOL, Makabaka, YasmineDancer, RoboDancer, Brena, TrafficTwins, Ashley, JoellaDancer, Nono, RobotDancer, MonkeyDancer, Hubert, EvanDancer, BankharDancer, Shakira, HarpersDancer, AmyDancer, YuqiLiangDancer, TemieDancer, OliviaDancer, LindaDancer, MandyDancer, JingyiDancer, NancyDancer, KevinDancer, JeffDancer, JackDancer, GavynDancer, ChaeDancer, BrianDancer, BrendanDancer, AshleyDancer];
+let dancerClasses = [LOL, Makabaka, YasmineDancer, RoboDancer, Brena, TrafficTwins, Ashley, JoellaDancer, Nono, RobotDancer, MonkeyDancer, Hubert, EvanDancer, BankharDancer, Shakira, HarpersDancer, AmyDancer, YuqiLiangDancer, TemieDancer, OliviaDancer, LindaDancer, MandyDancer, JingyiDancer, NancyDancer, KevinDancer, JeffDancer, JackDancer, GavynDancer, ChaeDancer, BrianDancer, BrendanDancer, AshleyDancer, TeddyBearDancer, CatDancer, TamilaDancer, SavannaDancer, NurbolDancer, myBot, MindyDancer, spongeDancer, Cat, daiadancer, dancerGhost, CircleDancer];
 
 
 let dancers = [];
